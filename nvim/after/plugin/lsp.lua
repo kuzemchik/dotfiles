@@ -19,7 +19,16 @@ require('mason-lspconfig').setup({
   },
   handlers = {
     lsp.default_setup,
-  },
+    ansiblels = function()
+        require('lspconfig').ansiblels.setup({
+            ansible = {
+                python = {
+                    activationScript="/Users/vkuzemchik/p3/bin/activate"
+                }
+            }
+        })
+    end
+},
 })
 
 -- Fix Undefined global 'vim'
@@ -28,9 +37,6 @@ require('mason-lspconfig').setup({
  
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
---require('ansiblels').setup({
---    ansible.python.activationScript='/Users/vkuzemchik/p3/bin/activate'
---})
 
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 cmp.setup({ 
