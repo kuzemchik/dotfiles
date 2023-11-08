@@ -46,5 +46,22 @@ return require('packer').startup(function(use)
   use { 'mg979/vim-visual-multi', branch= 'master' }
   use( 'eandrju/cellular-automaton.nvim' )
   use( 'lewis6991/gitsigns.nvim' )
+  use( 'eandrju/cellular-automaton.nvim')
+  use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
+  }
+  use {
+      "SmiteshP/nvim-navbuddy",
+      requires = {
+          "neovim/nvim-lspconfig",
+          "SmiteshP/nvim-navic",
+          "MunifTanjim/nui.nvim",
+          "numToStr/Comment.nvim",        -- Optional
+          "nvim-telescope/telescope.nvim" -- Optional
+      }
+  }
 end)
 
