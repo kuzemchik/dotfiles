@@ -4,6 +4,11 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Exp)
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+local opts = { noremap = true, silent = true }
+vim.keymap.set("i", "<S-Tab>", '<BS>')
+vim.keymap.set("v", "<Tab>", ">gv", opts)
+vim.keymap.set("v", "<S-Tab>","<gv", opts)
+
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
