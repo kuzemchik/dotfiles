@@ -15,7 +15,8 @@ require('mason-lspconfig').setup({
       'docker_compose_language_service',
       'gopls',
       'pyright',
-      'ansiblels'
+      'ansiblels',
+      'marksman'
   },
   handlers = {
     lsp.default_setup,
