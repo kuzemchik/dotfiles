@@ -5,31 +5,31 @@ lsp.preset("recommended")
  
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {
-	  'tsserver',
-	  'rust_analyzer',
-      'zls',
-      'bashls',
-      'clangd',
-      'dockerls',
-      'docker_compose_language_service',
-      'gopls',
-      'pyright',
-      'ansiblels',
-      'marksman'
-  },
-  handlers = {
-    lsp.default_setup,
-    ansiblels = function()
-        require('lspconfig').ansiblels.setup({
-            ansible = {
-                python = {
-                    activationScript="/Users/vkuzemchik/p3/bin/activate"
+    ensure_installed = {
+        'tsserver',
+        'rust_analyzer',
+        'zls',
+        'bashls',
+        'clangd',
+        'dockerls',
+        'docker_compose_language_service',
+        'gopls',
+        'pyright',
+        'ansiblels',
+        'marksman'
+    },
+    handlers = {
+        lsp.default_setup,
+        ansiblels = function()
+            require('lspconfig').ansiblels.setup({
+                ansible = {
+                    python = {
+                        activationScript="/Users/vkuzemchik/p3/bin/activate"
+                    }
                 }
-            }
-        })
-    end
-},
+            })
+        end
+    },
 })
 
 -- Fix Undefined global 'vim'

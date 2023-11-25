@@ -47,6 +47,7 @@ return require('packer').startup(function(use)
   use( 'eandrju/cellular-automaton.nvim' )
   use( 'lewis6991/gitsigns.nvim' )
   use( 'eandrju/cellular-automaton.nvim')
+  use( 'nvim-tree/nvim-tree.lua')
   use {
       'numToStr/Comment.nvim',
       config = function()
