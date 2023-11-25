@@ -16,7 +16,8 @@ require('mason-lspconfig').setup({
         'gopls',
         'pyright',
         'ansiblels',
-        'marksman'
+        'marksman',
+        'lua_ls',
     },
     handlers = {
         lsp.default_setup,
