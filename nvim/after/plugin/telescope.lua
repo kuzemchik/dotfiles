@@ -1,5 +1,5 @@
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
+vim.keymap.set('n', '<leader>pf', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>", {})
 vim.keymap.set('n', '<C-p>pf', builtin.git_files, {})
 vim.keymap.set('n', '<leader>po', builtin.treesitter, {})
 --vim.keymap.set('n', '<leader>po', builtin.lsp_definitions, {})
