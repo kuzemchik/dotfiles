@@ -46,8 +46,8 @@ return require('packer').startup(function(use)
     use { 'mg979/vim-visual-multi', branch = 'master' }
     use('eandrju/cellular-automaton.nvim')
     use('lewis6991/gitsigns.nvim')
-    use('eandrju/cellular-automaton.nvim')
     use('nvim-tree/nvim-tree.lua')
+    use('tpope/vim-surround')
     use {
         'numToStr/Comment.nvim',
         config = function()
@@ -56,14 +56,14 @@ return require('packer').startup(function(use)
     }
     use("github/copilot.vim")
     use("tpope/vim-obsession")
-    use {
-        "SmiteshP/nvim-navbuddy",
-        requires = {
-            "neovim/nvim-lspconfig",
-            "SmiteshP/nvim-navic",
-            "MunifTanjim/nui.nvim",
-            "numToStr/Comment.nvim",      -- Optional
-            "nvim-telescope/telescope.nvim" -- Optional
-        }
-    }
+    -- use {
+    --     "SmiteshP/nvim-navbuddy",
+    --     requires = {
+    --         "neovim/nvim-lspconfig",
+    --         "SmiteshP/nvim-navic",
+    --         "MunifTanjim/nui.nvim",
+    --         "numToStr/Comment.nvim",      -- Optional
+    --         "nvim-telescope/telescope.nvim" -- Optional
+    --     }
+    -- }
 end)
