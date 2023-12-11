@@ -37,6 +37,10 @@ require('mason-lspconfig').setup({
 --lsp.nvim_workspace()
 
  
+require('lspconfig').sourcekit.setup{
+  cmd = {'/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp'}
+}
+
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 
