@@ -27,7 +27,14 @@ return require('packer').startup(function(use)
     use('ThePrimeagen/harpoon')
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
+    use 'neovim/nvim-lspconfig'
+    use 'simrat39/rust-tools.nvim'
     use 'mfussenegger/nvim-dap'
+    use 'jay-babu/mason-nvim-dap.nvim'
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+    use {
+        "folke/which-key.nvim",
+    }
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',
@@ -41,6 +48,16 @@ return require('packer').startup(function(use)
             { 'hrsh7th/nvim-cmp' },
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'L3MON4D3/LuaSnip' },
+        }
+    }
+    use {
+        "nvim-neotest/neotest",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-neotest/neotest-python",
+            "rouge8/neotest-rust",
         }
     }
     use('christoomey/vim-tmux-navigator')

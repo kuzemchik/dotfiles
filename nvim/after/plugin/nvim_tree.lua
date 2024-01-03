@@ -8,33 +8,50 @@ local function tree_on_attach(bufnr)
     -- default mappings
     api.config.mappings.default_on_attach(bufnr)
 
-    vim.keymap.set('n', '?',     api.tree.toggle_help,                  opts('Help'))
+    vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
 end
 
 
 require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    width = 30,
-  },
-  on_attach = tree_on_attach,
-  renderer = {
-    group_empty = true,
-    icons = {
-        show = {
-            file = false,
-            folder = false,
-            folder_arrow = true,
-            git = false
-        }
+    sort_by = "case_sensitive",
+    view = {
+        side = "right",
+        width = 80,
+        -- float = {
+        --     enable = true,
+        --     open_win_config = {
+        --         relative = "editor",
+        --         border = "rounded",
+        --         width = 80,
+        --         height = 60,
+        --         row = 0,
+        --         col = 150,
+        --     }
+        -- }
     },
-  },
-  filters = {
-    dotfiles = true,
-  },
+    actions = {
+        open_file = {
+            quit_on_open = true,
+        },
+    },
+    on_attach = tree_on_attach,
+    renderer = {
+        group_empty = true,
+        icons = {
+            show = {
+                file = false,
+                folder = false,
+                folder_arrow = true,
+                git = false
+            }
+        },
+    },
+    filters = {
+        dotfiles = true,
+    },
 })
 
 local api = require "nvim-tree.api"
-vim.keymap.set('n', '<leader>pv',     function() 
+vim.keymap.set('n', '<leader>t', function()
     api.tree.toggle({ path = "<args>", find_file = true, update_root = false, focus = true, })
 end)
