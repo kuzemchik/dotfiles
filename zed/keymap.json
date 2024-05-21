@@ -1,0 +1,43 @@
+[
+  {
+    "bindings": {
+      "cmd-o": null
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-1": "workspace::ToggleLeftDock",
+      "cmd-o": "project_symbols::Toggle",
+      "cmd-p": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "shift-j": "editor::JoinLines"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-shift-up": "editor::AddSelectionAbove",
+      "ctrl-shift-down": "editor::AddSelectionBelow"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "=": "editor::Format",
+      "shift-k": "editor::MoveLineUp",
+      "shift-j": "editor::MoveLineDown"
+      // "gc": [
+      //   "editor::ToggleComments",
+      //   {
+      //     "advance_downwards": false
+      //   }
+      // ],
+      // visual, visual line & visual block modes
+    }
+  }
+]
