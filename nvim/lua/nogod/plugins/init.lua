@@ -36,7 +36,6 @@ return {
     { 'christoomey/vim-tmux-navigator' },
     { 'eandrju/cellular-automaton.nvim' },
     { 'tpope/vim-surround' },
-    { "github/copilot.vim" },
     { "tpope/vim-obsession" },
     -- {
     --     "SmiteshP/nvim-navbuddy",

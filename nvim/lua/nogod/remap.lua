@@ -88,7 +88,7 @@ end
 local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
 local autocmd = vim.api.nvim_create_autocmd
 nogod = augroup("nogod", {})
-autocmd('LspAttach', { 
+autocmd('LspAttach', {
 
 	group = nogod,
 	callback = function(e)
@@ -97,7 +97,7 @@ autocmd('LspAttach', {
 
         vim.keymap.set("n", "<S-F6>", function()
             vim.lsp.buf.rename()
-        end)
+        end, { desc = "Rename symbol" })
 		-- vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
 		vim.keymap.set("n", "gd", open_split_buffer_goto_definition, {})
 		vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -108,7 +108,7 @@ autocmd('LspAttach', {
 		vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
 		vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
 		vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-		vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+		vim.keymap.set("i", "<F1>", function() vim.lsp.buf.signature_help() end, opts)
 	end
 })
 

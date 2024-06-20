@@ -10,6 +10,66 @@ return {
         'L3MON4D3/LuaSnip',
     },
     config = function()
+        local cmp = require('cmp')
+        --
+        local cmp_select = {behavior = cmp.SelectBehavior.Select}
+        cmp.setup({
+            mapping = cmp.mapping.preset.insert({
+                ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+                ["<C-s>"] = cmp.mapping.complete(),
+                -- ['<Tab>'] = nil,
+                ["<Tab>"] = cmp.mapping(function(fallback)
+                    -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
+                    if cmp.visible() then
+                        local entry = cmp.get_selected_entry()
+                        if not entry then
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        end
+                        cmp.confirm()
+                    else
+                        fallback()
+                    end
+                end, {"i","s","c",}),
+                ['<S-Tab>'] = nil,
+            }),
+            sources = cmp.config.sources({
+                { name = 'nvim_lsp' },
+                -- { name = 'vsnip' }, -- For vsnip users.
+                { name = 'luasnip' }, -- For luasnip users.
+                -- { name = 'ultisnips' }, -- For ultisnips users.
+                -- { name = 'snippy' }, -- For snippy users.
+            }, {
+                { name = 'buffer' },
+            })
+        })
+        -- `/` cmdline setup.
+        cmp.setup.cmdline('/', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'buffer' }
+            }
+        })
+
+        -- `:` cmdline setup.
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                {
+                    name = 'cmdline',
+                    option = {
+                        ignore_cmds = { 'Man', '!' }
+                    }
+                }
+            })
+        })
+
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
         require('mason-lspconfig').setup({
             ensure_installed = {
                 'tsserver',
@@ -28,7 +88,9 @@ return {
             },
             handlers = {
                     function (server_name) -- default handler (optional)
-                        require("lspconfig")[server_name].setup {}
+                        require("lspconfig")[server_name].setup {
+                            capabilities = capabilities
+                        }
                         require('lspconfig').sourcekit.setup{
                             cmd = {'/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp'}
                         }
@@ -59,51 +121,6 @@ return {
                         })
                     end,
                 },
-        })
-        local cmp = require('cmp')
-
-        local cmp_select = {behavior = cmp.SelectBehavior.Select}
-        -- `/` cmdline setup.
-        cmp.setup.cmdline('/', {
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = {
-                { name = 'buffer' }
-            }
-        })
-
-        -- `:` cmdline setup.
-        cmp.setup.cmdline(':', {
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({
-                { name = 'path' }
-            }, {
-                {
-                    name = 'cmdline',
-                    option = {
-                        ignore_cmds = { 'Man', '!' }
-                    }
-                }
-            })
-        })
-
-        cmp.setup({
-            mappings = cmp.mapping.preset.insert({
-                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-                ["<C-s>"] = cmp.mapping.complete(),
-                ['<Tab>'] = nil,
-                ['<S-Tab>'] = nil,
-            }),
-            sources = cmp.config.sources({
-                { name = 'nvim_lsp' },
-                -- { name = 'vsnip' }, -- For vsnip users.
-                { name = 'luasnip' }, -- For luasnip users.
-                -- { name = 'ultisnips' }, -- For ultisnips users.
-                -- { name = 'snippy' }, -- For snippy users.
-            }, {
-                { name = 'buffer' },
-            })
         })
         vim.diagnostic.config({
             virtual_text = true
